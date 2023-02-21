@@ -28,7 +28,6 @@ export const store = configureStore({
         }),
 })
 
-
 export const { getAllTodos } = Slice.actions
 
 export default Slice.reducer

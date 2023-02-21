@@ -5,7 +5,6 @@ import { db } from "../firebase";
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllTodos } from '../Redux/Slice'
 
-
 const Todos = () => {
     const dispatch = useDispatch()
     const todo = useSelector((state) => state.todos.todoArr)
@@ -29,12 +28,7 @@ const Todos = () => {
                 todo.length > 0 &&
                 <div className="todo_container">
                     <h2>Todo List</h2>
-                    {todo.map((todo) => (
-                        <Todo
-                            key={todo.id}
-                            todo={todo}
-                        />
-                    ))}
+                    {todo.map((data) => (<Todo key={data.id} todo={data} />))}
                 </div>
             }
         </>

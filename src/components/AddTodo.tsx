@@ -3,10 +3,13 @@ import { useForm } from 'react-hook-form'
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 
-
+type FormValues = {
+    title: string;
+    completed: boolean;
+};
 export default function AddTodo() {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const submitHandler = async (data) => {
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>();
+    const submitHandler = async (data: FormValues) => {
         await addDoc(collection(db, "todos"), {
             title: data.title,
             completed: false
