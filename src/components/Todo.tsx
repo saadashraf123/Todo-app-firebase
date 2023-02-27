@@ -20,6 +20,12 @@ interface todoTypes {
   id: string
 }
 
+const styles = {
+    container: {
+      textDecoration: "line-through"
+    }
+  } as const;
+  
 const Todo = ({ todo }:TodoListProps) => {
     const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
         defaultValues: {
@@ -40,7 +46,9 @@ const Todo = ({ todo }:TodoListProps) => {
         <div className="todo">
             <form onSubmit={handleSubmit(handleChange)}>
                 <input {...register("title", { required: "This is Required" })}
-                    // style={{ textDecoration: todo.completed && "line-through" }}
+                    style={{
+                        textDecoration: todo.completed ? 'line-through' : 'none'
+                    }}
                 />
                 <p>{errors.title?.message}</p>
                 <button type='submit' value="Edit" className="button button-edit" ><EditIcon id="i" /></button>
